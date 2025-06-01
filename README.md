@@ -37,17 +37,40 @@ Python bindings are also provided. You can use the following commands to generat
 First install the requirements, if you don't already have them:
 ```bash
 $ apt install python3-dev
-$ pip install cffi setuptools
+$ pip install cffi setuptools numpy
 ```
 
 Then generate the bindings:
 ```bash
-$ cd bindings/python
-$ python ransac_line/build_ffi.py
+$ cd bindings/python/ransac_line
+$ python build_ffi.py
 ```
 
 Test and install them:
 ```bash
+$ cd ..
 $ python test.py
-$ pip install -e ransac_line
+$ pip install -e .
+```
+
+### Example
+
+```py
+import numpy as np
+from ransac_line import fit
+
+from time import time
+
+# 1. Your input data (NumPy arrays)
+xs_np = np.array([1.0, 2.0, 3.0, 4.0], dtype=np.float32)
+ys_np = np.array([1.1, 2.1, 3.1, 3.9], dtype=np.float32)
+
+# 3. Call the C function
+threshold = 0.5
+max_iters = 100
+now = time()
+slope = fit(xs_np, ys_np, threshold, max_iters)
+
+# 4. Use the result
+print("Best slope:", slope)
 ```
