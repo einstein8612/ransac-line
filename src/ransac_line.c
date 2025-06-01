@@ -23,7 +23,7 @@ static inline int calculate_inliers(float a, float* xs, float* ys, int num_point
     return inliers_count;
 }
 
-static inline float ransac_line_basic(float* xs, float* ys, int num_points) {
+static inline float line_basic(float* xs, float* ys, int num_points) {
     // Randomly select two points
     int idx1 = get_random_index(num_points);
     int idx2 = get_random_index(num_points);
@@ -50,7 +50,7 @@ float ransac_line(float* xs, float* ys, int num_points, float threshold, int max
     int best_inliers = 0;
     float best_slope = 0.0f;
     for (int i = 0; i < max_iterations; i++) {
-        float slope = ransac_line_basic(xs, ys, num_points);
+        float slope = line_basic(xs, ys, num_points);
 
         // Count inliers
         int inliers_count = calculate_inliers(slope, xs, ys, num_points, threshold);
