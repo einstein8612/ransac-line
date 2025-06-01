@@ -6,7 +6,7 @@
 #include <time.h>
 
 static inline bool is_inlier_fast(float a, float x, float actual_y, float threshold) {
-    return fabs(a*x - actual_y) < threshold;
+    return fabsf(a*x - actual_y) < threshold;
 }
 
 static inline int get_random_index(int num_points) {
@@ -62,5 +62,15 @@ float fit(float* xs, float* ys, int num_points, float threshold, int max_iterati
         }
     }
 
-    return best_slope;
+    // Refit using inliers via least squares
+    float num = 0.0f, denom = 0.0f;
+    for (int i = 0; i < num_points; i++) {
+        float dist = fabsf(best_slope * xs[i] - ys[i]);
+        if (dist < threshold) {
+            num += xs[i] * ys[i];
+            denom += xs[i] * xs[i];
+        }
+    }
+
+    return (denom != 0.0f) ? (num / denom) : 0.0f;
 }
