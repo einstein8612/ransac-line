@@ -50,9 +50,9 @@ static inline float line_basic(float* xs, float* ys, int num_points) {
     return slope;
 }
 
-float fit(float* xs, float* ys, int num_points, float threshold, int max_iterations) {
+float fit(float* xs, float* ys, int num_points, float threshold, int max_iterations, int seed) {
     // Seed the random number generator with the current time
-    srand((unsigned int) time(NULL));
+    srand(seed);
 
     int best_inliers = 0;
     float best_slope = 0.0f;

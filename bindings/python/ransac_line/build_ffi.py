@@ -5,7 +5,7 @@ ffibuilder = FFI()
 
 # 1. Declare the C functions we want to use
 ffibuilder.cdef("""
-    float fit(float* xs, float* ys, int num_points, float threshold, int max_iterations);
+    float fit(float* xs, float* ys, int num_points, float threshold, int max_iterations, int seed);
 """)
 
 # 2. Link to the actual implementation

@@ -17,7 +17,7 @@ int main(void) {
     float threshold = 1.0;
     int max_iterations = 25;
 
-    float slope = fit(xs, ys, num_points, threshold, max_iterations);
+    float slope = fit(xs, ys, num_points, threshold, max_iterations, 42);
     printf("Estimated slope: %f\n", slope);
     assert(slope > 1.0f && slope < 2.5f); // Expecting a slope close to 1.25...
     return 0;

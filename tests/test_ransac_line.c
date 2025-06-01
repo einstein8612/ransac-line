@@ -11,7 +11,7 @@ int main(void) {
     float threshold = 1.0;
     int max_iterations = 25;
 
-    float slope = fit(xs, ys, num_points, threshold, max_iterations);
+    float slope = fit(xs, ys, num_points, threshold, max_iterations, 42);
     assert(slope > 1.5f && slope < 2.0f); // Expecting a slope close to 1.666666...
     return 0;
 }

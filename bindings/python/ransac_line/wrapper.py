@@ -3,7 +3,7 @@ import numpy.typing as npt
 
 from .ransac_line_ffi import lib, ffi
 
-def fit(xs: npt.NDArray, ys: npt.NDArray, threshold: float = 1.0, max_iters: int = 100) -> float:
+def fit(xs: npt.NDArray, ys: npt.NDArray, threshold: float = 1.0, max_iters: int = 100, seed: int = 42) -> float:
     if not isinstance(xs, np.ndarray) or not isinstance(ys, np.ndarray):
         raise TypeError("xs and ys must be NumPy arrays")
 
@@ -17,4 +17,4 @@ def fit(xs: npt.NDArray, ys: npt.NDArray, threshold: float = 1.0, max_iters: int
     xs_c = ffi.cast("float*", ffi.from_buffer(xs))
     ys_c = ffi.cast("float*", ffi.from_buffer(ys))
 
-    return lib.fit(xs_c, ys_c, n, threshold, max_iters)
+    return lib.fit(xs_c, ys_c, n, threshold, max_iters, seed)
