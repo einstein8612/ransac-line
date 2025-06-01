@@ -38,7 +38,14 @@ static inline float line_basic(float* xs, float* ys, int num_points) {
     float y1 = ys[idx1];
     float x2 = xs[idx2];
     float y2 = ys[idx2];
-    float slope = (y2 - y1) / (x2 - x1);
+
+    if (x1 == 0 || x2 == 0) {
+        return 0.0f;
+    }
+
+    float slope1 = y1 / x1;
+    float slope2 = y2 / x2;
+    float slope = 0.5f * (slope1 + slope2);
 
     return slope;
 }
