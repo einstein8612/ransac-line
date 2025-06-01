@@ -9,3 +9,4 @@ dependencies = ["cffi>=1.0.0"]
 
 [tool.setuptools]
 packages = ["ransac_line"]
+include-package-data = true
