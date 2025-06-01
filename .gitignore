@@ -52,3 +52,9 @@ Mkfile.old
 dkms.conf
 
 build
+
+bindings/python/.venv
+bindings/python/ransac_line/*.c
+bindings/python/ransac_line/*.so
+
+__pycache__

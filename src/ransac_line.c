@@ -43,7 +43,7 @@ static inline float line_basic(float* xs, float* ys, int num_points) {
     return slope;
 }
 
-float ransac_line(float* xs, float* ys, int num_points, float threshold, int max_iterations) {
+float fit(float* xs, float* ys, int num_points, float threshold, int max_iterations) {
     // Seed the random number generator with the current time
     srand((unsigned int) time(NULL));
 
