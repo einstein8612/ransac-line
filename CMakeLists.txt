@@ -15,6 +15,10 @@ include_directories(src)
 # Create the static library
 add_library(ransac_line STATIC src/ransac_line.c)
 
+target_include_directories(ransac_line PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
+)
+
 # Add tests
 enable_testing()
 add_subdirectory(tests)
